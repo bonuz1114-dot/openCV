@@ -1,17 +1,9 @@
 import cv2
 
-cap = cv2.VideoCapture(0)
-fourcc = cv2.VideoWriter_fourcc(*'XVID')
-out = cv2.VideoWriter('output.avi', fourcc,20.0, (640,480))
+img = cv2.imread('images/ZiJZu.png')
+resizeimg = cv2.resize(img, (600,400))
+cv2.arrowedLine(resizeimg, (0,0), (300,200), (255,0,0), 4)
+cv2.imshow('Image', resizeimg)
 
-while True:
-    ref, frame = cap.read()
-    out.write(frame)
-    cv2.imshow("frame", frame)
-    if  ref:
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            break
-
-cap.release()
-out.release()
+cv2.waitKey(0)
 cv2.destroyAllWindows()
